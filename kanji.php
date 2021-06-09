@@ -18,8 +18,8 @@
 					</div>
 				</div>
 				<div class="section__tools">
-					<div class="button-wp"><a class="button" href="#">Добавить иероглиф</a></div>
-					<div class="button-wp"><a class="button" href="#">Ключи</a></div>
+					<a class="button" href="/add-kanji.php">Добавить иероглиф</a>
+					<a class="button" href="/radicals.php">Ключи</a>
 					<?include('includes/search-block.php')?>
 				</div>
 				<div class="kanji__content">

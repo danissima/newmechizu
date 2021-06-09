@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="icon" href="images/logo/logo2.png">
-	<title>Карточка иероглифа 一</title>
+	<title>Новый иероглиф</title>
 </head>
 <body>
 	<?include("includes/header.php")?>
@@ -13,41 +13,15 @@
 		<div class="container">
 			<div class="section__wp single-kanji__section-wp">
 				<div class="section__top">
-					<a href="#" class="button">Изменить</a>
 					<div class="section__title-wp">
-						<h2 class="section__title">Карточка иероглифа</h2>
+						<h2 class="section__title">Новый иероглиф</h2>
 					</div>
-					<a href="#" class="button">Удалить</a>
 				</div>
 				<div class="single-kanji__content">
-					<div class="single-kanji__main-info">
-						<div class="single-kanji__readings">
-							<div class="single-kanji__readings-title-wp">
-								<h3 class="single-kanji__readings-title">Онные чтения</h3>
-							</div>
-							<div class="section__sep">&#9670;</div>
-							<div class="single-kanji__readings-list-wp">
-								<ul class="single-kanji__readings-list">
-									<li class="single-kanji__readings-item">イチ, イツ</li>
-								</ul>
-							</div>
-						</div>
-						<div class="single-kanji__preview-wp">
-							<div class="single-kanji__preview">一</div>
-							<div class="section__sep section__speaker">&#128265;</div>
-							<div class="single-kanji__radical">Ключ 1 (один)<br><span>一</span></div>
-						</div>
-						<div class="single-kanji__readings">
-							<div class="single-kanji__readings-title-wp">
-								<h3 class="single-kanji__readings-title">Кунные чтения</h3>
-							</div>
-							<div class="section__sep">&#9670;</div>
-							<div class="single-kanji__readings-list-wp">
-								<ul class="single-kanji__readings-list">
-									<li class="single-kanji__readings-item">ひとつ - <span>один</span></li>
-								</ul>
-							</div>
-						</div>
+					<div class="add-kanji__kanji">
+						<h3 class="add-kanji__kanji-title">Иероглиф</h3>
+						<input type="text" class="add-kanji__kanji-input">
+						<span class="add-kanji__kanji-sep">ff</span>
 					</div>
 					<div class="single-kanji__table section__table">
 						<div class="section__table-row-head section__table-row section__combs-table-row-head">
