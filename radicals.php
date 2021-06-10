@@ -1,3 +1,13 @@
+<?php
+include 'config.php';
+$selectRadicals = $mysqli->query("SELECT * FROM kanji_keys ORDER BY key_number");
+	$radicals = [];
+	while($item = $selectRadicals->fetch_array()) {
+		array_push($radicals, $item);
+	}
+
+?>
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -49,7 +59,7 @@
 						<a class="button button_centered" href="#">Добавить ключи</a>
 					</form>
 					<div class="words__table words-letter__table section__table section__table_small">
-						<div class="section__table-row-head section__table-row">
+						<div class="section__table-row-head section__table-row-head_sticky section__table-row">
 							<div class="section__table-item section__table-item-head">
 								<h4>Ключ</h4>
 								<div class="section__sep section__sep_white">&#9670;</div>
@@ -63,12 +73,20 @@
 								<div class="section__sep section__sep_white">&#9670;</div>
 							</div>
 						</div>
-						<div class="section__table-row">
-							<div class="section__table-item section__table-item_kanji">一年生</div>
-							<div class="section__table-item">10</div>
-							<div class="section__table-item">Первогодка</div>
-							<span class="section__table-row-icon section__table-row-change">&#9999;</span>
-						</div>
+						<?php 
+							foreach ($radicals as $item) {
+								$radicalID = $item['ID'];
+								$radicalView = $item['key_view'];
+								$radicalNumber = $item['key_number'];
+								$radicalName = $item['key_name']; 
+						?>
+							<div class="section__table-row">
+								<div class="section__table-item section__table-item_kanji"><?=$radicalView?></div>
+								<div class="section__table-item"><?=$radicalNumber?></div>
+								<div class="section__table-item"><?=$radicalName?></div>
+								<span class="section__table-row-icon section__table-row-change">&#9999;</span>
+							</div>
+						<?php } ?>
 					</div>
 				</div>
 			</div>

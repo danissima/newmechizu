@@ -1,3 +1,14 @@
+<?php
+include 'config.php';
+
+$selectRadicals = $mysqli->query("SELECT * FROM kanji_keys");
+$arrRadicals = [];
+
+while($item = $selectRadicals->fetch_array()) {
+	array_push($arrRadicals, $item);
+}
+
+?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -9,47 +20,96 @@
 </head>
 <body>
 	<?include("includes/header.php")?>
-	<section class="section">
+	<section class="add-kanji__section section">
 		<div class="container">
-			<div class="section__wp single-kanji__section-wp">
+			<div class="section__wp add-kanji__section single-kanji__section-wp">
 				<div class="section__top">
 					<div class="section__title-wp">
 						<h2 class="section__title">Новый иероглиф</h2>
 					</div>
 				</div>
 				<div class="single-kanji__content">
-					<div class="add-kanji__kanji">
-						<h3 class="add-kanji__kanji-title">Иероглиф</h3>
-						<input type="text" class="add-kanji__kanji-input">
-						<span class="add-kanji__kanji-sep">ff</span>
-					</div>
-					<div class="single-kanji__table section__table">
-						<div class="section__table-row-head section__table-row section__combs-table-row-head">
-							<div class="section__table-title-wp"><h3 class="section__table-title">Сочетания</h3></div>
-							<div class="section__table-item section__table-item-head">
-								<h4>Иероглифы</h4>
-								<div class="section__sep section__sep_white">&#9670;</div>
+					<form action="">
+						<div class="add-kanji__kanji">
+							<h3 class="add-kanji__subtitle">Иероглиф</h3>
+							<input type="text" class="add-kanji__kanji-input" placeholder="漢字">
+							<div class="section__sep section__sep_big">&#9670;</div>
+						</div>
+						<div class="add-kanji__readings">
+							<div class="add-kanji__reading">
+								<div class="add-kanji__reading-title">
+									<h3 class="add-kanji__subtitle">Онные чтения</h3>
+									<div class="section__sep">&#9670;</div>
+									<span class="add-kanji__reading-add">&plus;</span>
+								</div>
+								<div class="add-kanji__reading-content">
+									<div class="add-kanji__reading-row add-kanji__reading-headrow">
+										<div class="add-kanji__reading-cell">Чтение</div>
+										<div class="add-kanji__reading-cell">Значение</div>
+									</div>
+									<div class="add-kanji__reading-row">
+										<textarea class="add-kanji__reading-cell add-kanji__reading-cell_kanji" placeholder="Чтение"></textarea>
+										<textarea class="add-kanji__reading-cell" placeholder="Значение"></textarea>
+										<span class="add-kanji__reading-delete">&times;</span>
+									</div>
+								</div>
 							</div>
-							<div class="section__table-item section__table-item-head">
-								<h4>Азбука</h4>
-								<div class="section__sep section__sep_white">&#9670;</div>
-							</div>
-							<div class="section__table-item section__table-item-head">
-								<h4>Перевод</h4>
-								<div class="section__sep section__sep_white">&#9670;</div>
+							<div class="add-kanji__reading">
+								<div class="add-kanji__reading-title">
+									<h3 class="add-kanji__subtitle">Кунные чтения</h3>
+									<div class="section__sep">&#9670;</div>
+									<span class="add-kanji__reading-add">&plus;</span>
+								</div>
+								<div class="add-kanji__reading-content">
+									<div class="add-kanji__reading-row add-kanji__reading-headrow">
+										<div class="add-kanji__reading-cell">Чтение</div>
+										<div class="add-kanji__reading-cell">Значение</div>
+									</div>
+									<div class="add-kanji__reading-row">
+										<textarea class="add-kanji__reading-cell add-kanji__reading-cell_kanji" placeholder="Чтение"></textarea>
+										<textarea class="add-kanji__reading-cell" placeholder="Значение"></textarea>
+										<span class="add-kanji__reading-delete">&times;</span>
+									</div>
+								</div>
 							</div>
 						</div>
-						<div class="section__table-row">
-							<div class="section__table-item section__table-item_kanji">一年生</div>
-							<div class="section__table-item section__table-item_kanji">いちねんせい</div>
-							<div class="section__table-item">Первогодка</div>
+						<div class="add-kanji__radical">
+							<h3 class="add-kanji__subtitle">Ключ</h3>
+							<select class="add-kanji__radical-select" name="" id="">
+								<?php
+									for($i = 0; $i < count($arrRadicals); $i++) {
+										$radicalNum = $arrRadicals[$i]['key_number'];
+										$radicalView = $arrRadicals[$i]['key_view'];
+										$radicalName = $arrRadicals[$i]['key_name']; ?>
+										<option value=""><?=$radicalName?> <?=$radicalNum?> - <?=$radicalView?></option>
+								<?php } ?>
+							</select>
 						</div>
-						<div class="section__table-row">
-							<div class="section__table-item section__table-item_kanji">一日</div>
-							<div class="section__table-item section__table-item_kanji">ついたち</div>
-							<div class="section__table-item">Первый день месяца</div>
+						<div class="single-kanji__table section__table">
+							<div class="section__table-row-head section__table-row section__combs-table-row-head">
+								<div class="section__table-title-wp"><h3 class="section__table-title">Сочетания</h3></div>
+								<div class="section__table-item section__table-item-head">
+									<h4>Иероглифы</h4>
+									<div class="section__sep section__sep_white">&#9670;</div>
+								</div>
+								<div class="section__table-item section__table-item-head">
+									<h4>Азбука</h4>
+									<div class="section__sep section__sep_white">&#9670;</div>
+								</div>
+								<div class="section__table-item section__table-item-head">
+									<h4>Перевод</h4>
+									<div class="section__sep section__sep_white">&#9670;</div>
+								</div>
+								<span class="section__table-row-icon section__table-row-add">&plus;</span>
+							</div>
+							<div class="section__table-row">
+								<input type="text" class="section__table-item section__table-item_kanji" placeholder="漢字">
+								<input type="text" class="section__table-item section__table-item_kanji" placeholder="かな">
+								<input type="text" class="section__table-item" placeholder="Перевод">
+								<span class="section__table-row-icon section__table-row-delete">&times;</span>
+							</div>
 						</div>
-					</div>
+					</form>
 				</div>
 			</div>
 		</div>

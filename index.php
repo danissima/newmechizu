@@ -1,3 +1,15 @@
+<?php 
+include 'config.php';
+
+$kanjiSelect = $mysqli->query("SELECT kanji_view FROM kanji");
+$wordsSelect = $mysqli->query("SELECT word_kanji FROM words");
+$combsSelect = $mysqli->query("SELECT combination FROM combinations");
+
+$kanjiAmount = $kanjiSelect->{'num_rows'};
+$wordsAmount = $wordsSelect->{'num_rows'} + $combsSelect->{'num_rows'};
+
+?>
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -17,7 +29,7 @@
 						<h1 class="main__title">Упрости своё изучение японского</h1>
 					</div>
 					<div class="main__stats-info-wp">
-						<p class="main__stats-info">На сегодняшний день изучено<br><span class="main__stats-num">16</span> иероглифов и <span class="main__stats-num">28</span> слов</p>
+						<p class="main__stats-info">На сегодняшний день изучено<br><span class="main__stats-num"><?=$kanjiAmount?></span> иероглифов и <span class="main__stats-num"><?=$wordsAmount?></span> слов</p>
 					</div>
 				</div>
 			</div>
