@@ -95,7 +95,8 @@ foreach($resultOnPage as &$word) {
 					?>
 				</div>
 				<div class="words__content">
-					<form method="POST" action="">
+					<form method="GET" action="controller/words.php">
+						<input type="hidden" name="action" value="add">
 						<div class="words__table section__table section__table_small">
 							<div class="section__table-row-head section__table-row">
 								<div class="section__table-title-wp section__table-title-wp_left section__table-title-wp_small"><h3 class="section__table-title">Новые слова</h3></div>
@@ -114,13 +115,13 @@ foreach($resultOnPage as &$word) {
 								<span class="section__table-row-icon section__table-row-add">&plus;</span>
 							</div>
 							<div class="section__table-row">
-								<input type="text" class="section__table-item section__table-item_kanji" placeholder="漢字">
-								<input type="text" class="section__table-item section__table-item_kanji" placeholder="かな">
-								<input type="text" class="section__table-item" placeholder="Перевод">
+								<input name="wordKanji[]" type="text" class="section__table-item section__table-item_kanji" placeholder="漢字">
+								<input required name="wordKana[]" type="text" class="section__table-item section__table-item_kanji" placeholder="かな">
+								<input required name="wordTranslation[]" type="text" class="section__table-item" placeholder="Перевод">
 								<span class="section__table-row-icon section__table-row-delete">&times;</span>
 							</div>
 						</div>
-						<a class="button button_centered" href="#">Добавить слова</a>
+						<button class="button button_centered">Добавить слова</button>
 					</form>
 					<?php
 					foreach($sortedByKana as &$letter) {

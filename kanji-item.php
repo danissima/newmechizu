@@ -43,7 +43,7 @@ include 'config.php';
 					<div class="section__title-wp">
 						<h2 class="section__title">Карточка иероглифа</h2>
 					</div>
-					<a href="#" class="button">Удалить</a>
+					<a href="/controller/delete.php?deletingKanji=<?=$kanjiView?>" class="button">Удалить</a>
 				</div>
 				<div class="single-kanji__content">
 					<div class="single-kanji__main-info">

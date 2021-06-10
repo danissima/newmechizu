@@ -1,5 +1,5 @@
 <div class="search">
-	<form action="search.php">
+	<form method="GET" action="../search.php">
 		<div class="search-wp">
 			<div class="search__input-wp">
 				<input type="text" class="search__input" placeholder="Что ищем?" name="search">

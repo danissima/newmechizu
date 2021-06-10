@@ -31,7 +31,8 @@ $selectRadicals = $mysqli->query("SELECT * FROM kanji_keys ORDER BY key_number")
 					<?include('includes/search-block.php')?>
 				</div>
 				<div class="words__content">
-					<form method="POST" action="">
+					<form method="GET" action="controller/radicals.php">
+					<input type="hidden" name="action" value="add">
 						<div class="words__table section__table section__table_small">
 							<div class="section__table-row-head section__table-row">
 								<div class="section__table-title-wp section__table-title-wp_left section__table-title-wp_small"><h3 class="section__table-title">Новые ключи</h3></div>
@@ -50,13 +51,13 @@ $selectRadicals = $mysqli->query("SELECT * FROM kanji_keys ORDER BY key_number")
 								<span class="section__table-row-icon section__table-row-add">&plus;</span>
 							</div>
 							<div class="section__table-row">
-								<input type="text" class="section__table-item section__table-item_kanji" placeholder="Ключ">
-								<input type="text" class="section__table-item" placeholder="Номер">
-								<input type="text" class="section__table-item" placeholder="Название">
+								<input required name="radicalView[]" type="text" class="section__table-item section__table-item_kanji" placeholder="Ключ">
+								<input required name="radicalNumber[]" type="number" class="section__table-item" placeholder="Номер">
+								<input required name="radicalName[]" type="text" class="section__table-item" placeholder="Название">
 								<span class="section__table-row-icon section__table-row-delete">&times;</span>
 							</div>
 						</div>
-						<a class="button button_centered" href="#">Добавить ключи</a>
+						<button class="button button_centered">Добавить ключи</button>
 					</form>
 					<div class="words__table words-letter__table section__table section__table_small">
 						<div class="section__table-row-head section__table-row-head_sticky section__table-row">

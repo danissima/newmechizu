@@ -241,6 +241,8 @@ h1, h2, h3, h4, h5, h6 {
 	font-size: 18px;
 	background-color: #fff;
 	transition: border-color .3s ease-out, color .3s ease-out, border-radius .1s ease-out;
+	cursor: pointer;
+	font-family: 'Montserrat', serif;
 }
 
 .button:hover {
@@ -855,4 +857,34 @@ h1, h2, h3, h4, h5, h6 {
 .pages__selected {
 	background-color: #bb1000;
 	color: #fff;
+}
+
+.add-kanji__section .single-kanji__content {
+	padding-right: 55px;
+}
+
+.add-kanji__section .section__table{
+	margin-bottom: 30px;
+}
+
+.search .kanji__col-radical-wp {
+	margin-bottom: 20px;
+}
+
+.search .kanji__col-radical-wp .kanji__col-radical {
+	font-size: 26px;
+}
+
+.search .kanji__col {
+	width: 100%;
+}
+
+.search .kanji__col-items {
+	display: flex;
+	flex-wrap: wrap;
+	width: auto;
+}
+
+.search .words__content {
+	margin-top: 50px;
 }

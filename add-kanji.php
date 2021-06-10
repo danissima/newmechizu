@@ -29,10 +29,11 @@ while($item = $selectRadicals->fetch_array()) {
 					</div>
 				</div>
 				<div class="single-kanji__content">
-					<form action="">
+					<form method="GET" action="controller/manipulate.php">
+						<input type="hidden" value="add" name="manipulate">
 						<div class="add-kanji__kanji">
 							<h3 class="add-kanji__subtitle">Иероглиф</h3>
-							<input type="text" class="add-kanji__kanji-input" placeholder="漢字">
+							<input required type="text" name="newKanjiView" class="add-kanji__kanji-input" placeholder="漢字">
 							<div class="section__sep section__sep_big">&#9670;</div>
 						</div>
 						<div class="add-kanji__readings">
@@ -48,8 +49,8 @@ while($item = $selectRadicals->fetch_array()) {
 										<div class="add-kanji__reading-cell">Значение</div>
 									</div>
 									<div class="add-kanji__reading-row">
-										<textarea class="add-kanji__reading-cell add-kanji__reading-cell_kanji" placeholder="Чтение"></textarea>
-										<textarea class="add-kanji__reading-cell" placeholder="Значение"></textarea>
+										<textarea name="newKanjiOnsReading[]" class="add-kanji__reading-cell add-kanji__reading-cell_kanji" placeholder="Чтение"></textarea>
+										<textarea name="newKanjiOnsMeaning[]" class="add-kanji__reading-cell" placeholder="Значение"></textarea>
 										<span class="add-kanji__reading-delete">&times;</span>
 									</div>
 								</div>
@@ -66,8 +67,8 @@ while($item = $selectRadicals->fetch_array()) {
 										<div class="add-kanji__reading-cell">Значение</div>
 									</div>
 									<div class="add-kanji__reading-row">
-										<textarea class="add-kanji__reading-cell add-kanji__reading-cell_kanji" placeholder="Чтение"></textarea>
-										<textarea class="add-kanji__reading-cell" placeholder="Значение"></textarea>
+										<textarea name="newKanjiKunsReading[]" class="add-kanji__reading-cell add-kanji__reading-cell_kanji" placeholder="Чтение"></textarea>
+										<textarea name="newKanjiKunsMeaning[]" class="add-kanji__reading-cell" placeholder="Значение"></textarea>
 										<span class="add-kanji__reading-delete">&times;</span>
 									</div>
 								</div>
@@ -75,13 +76,14 @@ while($item = $selectRadicals->fetch_array()) {
 						</div>
 						<div class="add-kanji__radical">
 							<h3 class="add-kanji__subtitle">Ключ</h3>
-							<select class="add-kanji__radical-select" name="" id="">
+							<select class="add-kanji__radical-select" name="newKanjiRadical">
 								<?php
 									for($i = 0; $i < count($arrRadicals); $i++) {
+										$radicalId = $arrRadicals[$i]['ID'];
 										$radicalNum = $arrRadicals[$i]['key_number'];
 										$radicalView = $arrRadicals[$i]['key_view'];
 										$radicalName = $arrRadicals[$i]['key_name']; ?>
-										<option value=""><?=$radicalName?> <?=$radicalNum?> - <?=$radicalView?></option>
+										<option value="<?=$radicalId?>"><?=$radicalName?> <?=$radicalNum?> - <?=$radicalView?></option>
 								<?php } ?>
 							</select>
 						</div>
@@ -103,12 +105,13 @@ while($item = $selectRadicals->fetch_array()) {
 								<span class="section__table-row-icon section__table-row-add">&plus;</span>
 							</div>
 							<div class="section__table-row">
-								<input type="text" class="section__table-item section__table-item_kanji" placeholder="漢字">
-								<input type="text" class="section__table-item section__table-item_kanji" placeholder="かな">
-								<input type="text" class="section__table-item" placeholder="Перевод">
+								<input name="combinationsKanji[]" type="text" class="section__table-item section__table-item_kanji" placeholder="漢字">
+								<input name="combinationsKana[]" type="text" class="section__table-item section__table-item_kanji" placeholder="かな">
+								<input name="combinationsTranslation[]" type="text" class="section__table-item" placeholder="Перевод">
 								<span class="section__table-row-icon section__table-row-delete">&times;</span>
 							</div>
 						</div>
+						<button class="button button_centered">Добавить иероглиф</button>
 					</form>
 				</div>
 			</div>
