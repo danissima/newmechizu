@@ -64,6 +64,8 @@ foreach($resultOnPage as &$word) {
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="icon" href="images/logo/logo2.png">
+	<script src="js/jquery.js" defer></script>
+	<script src="js/section-table.js" defer></script>
 	<title>Слова</title>
 </head>
 <body>
@@ -97,7 +99,7 @@ foreach($resultOnPage as &$word) {
 				<div class="words__content">
 					<form method="GET" action="controller/words.php">
 						<input type="hidden" name="action" value="add">
-						<div class="words__table section__table section__table_small">
+						<div class="words__table section__table js-table section__table_small">
 							<div class="section__table-row-head section__table-row">
 								<div class="section__table-title-wp section__table-title-wp_left section__table-title-wp_small"><h3 class="section__table-title">Новые слова</h3></div>
 								<div class="section__table-item section__table-item-head">
@@ -114,7 +116,7 @@ foreach($resultOnPage as &$word) {
 								</div>
 								<span class="section__table-row-icon section__table-row-add">&plus;</span>
 							</div>
-							<div class="section__table-row">
+							<div class="section__table-row js-row">
 								<input name="wordKanji[]" type="text" class="section__table-item section__table-item_kanji" placeholder="漢字">
 								<input required name="wordKana[]" type="text" class="section__table-item section__table-item_kanji" placeholder="かな">
 								<input required name="wordTranslation[]" type="text" class="section__table-item" placeholder="Перевод">

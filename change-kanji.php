@@ -28,6 +28,8 @@ while($item = $selectRadicals->fetch_array()) {
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="icon" href="images/logo/logo2.png">
+	<script src="js/jquery.js" defer></script>
+	<script src="js/section-table.js" defer></script>
 	<title>Изменение иероглифа <?=$changingKanji?></title>
 </head>
 <body>
@@ -112,7 +114,7 @@ while($item = $selectRadicals->fetch_array()) {
                   <?php } } ?>
 							</select>
 						</div>
-						<div class="single-kanji__table section__table">
+						<div class="single-kanji__table js-table section__table">
 							<div class="section__table-row-head section__table-row section__combs-table-row-head">
 								<div class="section__table-title-wp"><h3 class="section__table-title">Сочетания</h3></div>
 								<div class="section__table-item section__table-item-head">
@@ -135,7 +137,7 @@ while($item = $selectRadicals->fetch_array()) {
 											$combination = $item['combination'];
 											$kana = $item['kana'];
 											$translation = $item['translation']; ?>
-											<div class="section__table-row">
+											<div class="section__table-row js-row">
                         <input name="combinationsKanji[]" type="text" value="<?=$combination?>" class="section__table-item section__table-item_kanji" placeholder="漢字">
                         <input type="hidden" name="prevComb[]" value="<?=$combination?>">
                         <input name="combinationsKana[]" type="text" value="<?=$kana?>" class="section__table-item section__table-item_kanji" placeholder="かな">
@@ -144,7 +146,7 @@ while($item = $selectRadicals->fetch_array()) {
                       </div>
 									<?php }
 									} else { ?>
-                    <div class="section__table-row">
+                    <div class="section__table-row js-row">
                       <input name="combinationsKanji[]" type="text" class="section__table-item section__table-item_kanji" placeholder="漢字">
                       <input name="combinationsKana[]" type="text" class="section__table-item section__table-item_kanji" placeholder="かな">
                       <input name="combinationsTranslation[]" type="text" class="section__table-item" placeholder="Перевод">
