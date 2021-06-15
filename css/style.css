@@ -109,7 +109,7 @@ h1, h2, h3, h4, h5, h6 {
 .main {
 	overflow: hidden;
 	position: relative;
-	height: 770px;
+	height: 100vh;
 	background-image: url('../images/index/bg.png');
 	background-position: bottom;
 	background-repeat: no-repeat;
@@ -978,4 +978,17 @@ h1, h2, h3, h4, h5, h6 {
 
 .results__item-block {
 	margin-top: 10px;
+}
+
+.quiz__bottom {
+    display: flex;
+    justify-content: space-between;
+}
+
+.quiz__images img {
+    display: none;
+}
+
+.quiz__images img.active {
+    display: block;
 }

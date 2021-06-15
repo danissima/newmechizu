@@ -36,6 +36,16 @@ function checkAnswers() {
 		isAnswerCorrect(quizAnswerOns, ons, answerFieldOns);
 		isAnswerCorrect(quizAnswerKuns, kuns, answerFieldKuns);
 		isAnswerCorrect(quizAnswerMeanings, meanings, answerFieldMeanings);
+	if (answerFieldOns.style.borderColor == 'lightgreen' 
+	&& answerFieldKuns.style.borderColor == 'lightgreen'
+	&& answerFieldMeanings.style.borderColor == 'lightgreen') {
+	    $('.quiz__img').removeClass('active')
+	    $('.yes').addClass('active')
+	} else {
+	    $('.quiz__img').removeClass('active')
+	    $('.no').addClass('active')
+	}
+	    
 }
 
 function showResults() {

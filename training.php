@@ -62,19 +62,26 @@ $quizResults = $mysqli->query("SELECT kanji_search FROM kanji WHERE kanji_view =
           </div>
           <button class="button button_centered buttons__check-answers">Проверить</button>
 				</div>
-        <div class="quiz__results quiz__item">
-          <div class="result__item-block results__title-block">
-            <h2 class="results__title">Ответ:</h2>
-          </div>
-          <div class="results__item-block">
-            <p class="results__item results__ons"></p>
-          </div>
-          <div class="results__item-block">
-            <p class="results__item results__kuns"></p>
-          </div>
-          <div class="results__item-block">
-            <p class="results__item results__meanings"></p>
-          </div>
+    	<div class="quiz__bottom">
+            <div class="quiz__results quiz__item">
+              <div class="result__item-block results__title-block">
+                <h2 class="results__title">Ответ:</h2>
+              </div>
+              <div class="results__item-block">
+                <p class="results__item results__ons"></p>
+              </div>
+              <div class="results__item-block">
+                <p class="results__item results__kuns"></p>
+              </div>
+              <div class="results__item-block">
+                <p class="results__item results__meanings"></p>
+              </div>
+            </div>
+            <div class="quiz__images">
+                <img class="quiz__img what active" src="images/quiz/what.png" alt="what">
+                <img class="quiz__img yes" src="images/quiz/yes.png" alt="yes">
+                <img class="quiz__img no" src="images/quiz/no.png" alt="no">
+            </div>
         </div>
 			</div>
 		</div>

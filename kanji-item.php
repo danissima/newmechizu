@@ -89,9 +89,12 @@ include 'config.php';
 						</div>
 					</div>
 					<?php 
-					if (!$kanjiCombinations[0]) {
-						print("no");
-					} else {	
+					if (!$kanjiCombinations[0]) { ?>
+					<div style="text-align:center">
+						<p>Для этого иероглифа пока нет сочетаний, но скоро появятся</p>
+						<img src="images/quiz/what.png" alt="what">
+					</div>
+					<?php } else {	
 					?>
 					<div class="single-kanji__table section__table">
 						<div class="section__table-row-head section__table-row section__combs-table-row-head">
