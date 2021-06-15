@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'config.php';
 
 $find = $_GET['search'];
@@ -34,6 +35,9 @@ function queryResultToArr($queryResult) {
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="icon" href="images/logo/logo2.png">
+  <script src="js/jquery.js" defer></script>
+  <script src="js/words-modal.js" defer></script>
+  <script src="js/radicals-modal.js" defer></script>
 	<title>Результаты поиска</title>
 </head>
 <body>
@@ -45,6 +49,9 @@ function queryResultToArr($queryResult) {
 					<div class="section__title-wp">
 						<h2 class="section__title">Результаты поиска</h2>
 					</div>
+				</div>
+				<div class="section__tools">
+					<?include('includes/search-block.php')?>
 				</div>
         <?php
         if ($searchedKanji) { ?>
@@ -82,27 +89,35 @@ function queryResultToArr($queryResult) {
               </div>
               <?php foreach($searchedWords as &$word) {
                 $id = $word['ID'];
-                $from = $word['from'];
                 $wordKanji = $word[1];
                 $kana = $word['kana'];
                 $translation = $word['translation']; ?>
                 <div class="section__table-row">
+                  <input type="hidden" value="<?=$id?>" class="word-id">
+                  <input type="hidden" value="words" class="word-from">
                   <div class="section__table-item section__table-item_kanji"><?=$wordKanji?></div>
                   <div class="section__table-item section__table-item_kanji"><?=$kana?></div>
                   <div class="section__table-item"><?=$translation?></div>
-                  <span class="section__table-row-icon section__table-row-change">&#9999;</span>
+									<?php if($_SESSION['admin']) {?>
+                  	<span class="section__table-row-icon section__table-row-change word-change">&#9999;</span>
+									<?php }?>
                 </div>
               <?php } ?>
               <?php foreach($searchedCombs as &$item) {
+                $id = $item['ID'];
 								$combination = $item['combination'];
 								$kana = $item['kana'];
 								$translation = $item['translation'];
 							?>
 							<div class="section__table-row">
+                <input type="hidden" value="<?=$id?>" class="word-id">
+								<input type="hidden" value="combs" class="word-from">
 								<div class="section__table-item section__table-item_kanji"><?=$combination?></div>
 								<div class="section__table-item section__table-item_kanji"><?=$kana?></div>
 								<div class="section__table-item"><?=$translation?></div>
-                <span class="section__table-row-icon section__table-row-change">&#9999;</span>
+								<?php if($_SESSION['admin']) {?>
+                	<span class="section__table-row-icon section__table-row-change word-change">&#9999;</span>
+									<?php }?>
 							</div>
 						<?php } ?>
               </div>
@@ -133,10 +148,13 @@ function queryResultToArr($queryResult) {
                   $radicalName = $item['key_name']; 
               ?>
                 <div class="section__table-row">
+                  <input type="hidden" value="<?=$radicalID?>">
                   <div class="section__table-item section__table-item_kanji"><?=$radicalView?></div>
                   <div class="section__table-item"><?=$radicalNumber?></div>
                   <div class="section__table-item"><?=$radicalName?></div>
-                  <span class="section__table-row-icon section__table-row-change">&#9999;</span>
+									<?php if($_SESSION['admin']) {?>
+                  	<span class="section__table-row-icon section__table-row-change radical-change">&#9999;</span>
+										<?php }?>
                 </div>
               <?php } ?>
             </div>
@@ -146,5 +164,83 @@ function queryResultToArr($queryResult) {
 		</div>
 	</section>
 	<?include('includes/footer.php')?>
+  <div class="modal words__modal">
+		<div class="modal__overlay"></div>
+		<div class="modal__content">
+			<form method="GET" action="controller/words.php">
+				<input type="hidden" value="change" name="action">
+				<input type="hidden" value="" name="changing" class="wordId">
+				<input type="hidden" value="" name="from" class="from">
+				<div class="words__table section__table section__table_small">
+					<div class="section__table-row-head section__table-row">
+						<span class="section__table-row-icon modal__close">&times;</span>
+						<div class="section__table-title-wp section__table-title-wp_left section__table-title-wp_small"><h3 class="section__table-title">Изменение слова</h3></div>
+						<div class="section__table-item section__table-item-head">
+							<h4>Иероглифы</h4>
+							<div class="section__sep section__sep_white">&#9670;</div>
+						</div>
+						<div class="section__table-item section__table-item-head">
+							<h4>Азбука</h4>
+							<div class="section__sep section__sep_white">&#9670;</div>
+						</div>
+						<div class="section__table-item section__table-item-head">
+							<h4>Перевод</h4>
+							<div class="section__sep section__sep_white">&#9670;</div>
+						</div>
+					</div>
+					<div class="section__table-row">
+						<input name="wordKanji" type="text" class="section__table-item section__table-item_kanji wordKanji" placeholder="漢字">
+						<input required name="wordKana" type="text" class="section__table-item section__table-item_kanji wordKana" placeholder="かな">
+						<input required name="wordTranslation" type="text" class="section__table-item wordTranslate" placeholder="Перевод">
+					</div>
+				</div>
+				<button class="button">Изменить</button>
+			</form>
+			<form method="GET" action="controller/words.php">
+					<button class="button button__delete">Удалить</button>
+					<input type="hidden" value="delete" name="action">
+					<input type="hidden" value="" name="deleting" class="wordId">
+					<input type="hidden" value="" name="from" class="from">
+			</form>
+		</div>
+	</div>
+  <div class="modal radicals__modal">
+		<div class="modal__overlay"></div>
+		<div class="modal__content">
+			<form method="GET" action="controller/radicals.php">
+				<input type="hidden" value="change" name="action">
+				<input type="hidden" value="" name="changing" class="radicalId">
+				<div class="words__table section__table section__table_small">
+					<div class="section__table-row-head section__table-row">
+						<span class="section__table-row-icon modal__close">&times;</span>
+						<div class="section__table-title-wp section__table-title-wp_left section__table-title-wp_small"><h3 class="section__table-title">Изменение ключа</h3></div>
+						<div class="section__table-item section__table-item-head">
+							<h4>Ключ</h4>
+							<div class="section__sep section__sep_white">&#9670;</div>
+						</div>
+						<div class="section__table-item section__table-item-head">
+							<h4>Номер</h4>
+							<div class="section__sep section__sep_white">&#9670;</div>
+						</div>
+						<div class="section__table-item section__table-item-head">
+							<h4>Название</h4>
+							<div class="section__sep section__sep_white">&#9670;</div>
+						</div>
+					</div>
+					<div class="section__table-row">
+						<input name="radicalView" type="text" class="section__table-item section__table-item_kanji radicalView" placeholder="Ключ">
+						<input required name="radicalNumber" type="number" class="section__table-item radicalNum" placeholder="Номер">
+						<input required name="radicalName" type="text" class="section__table-item radicalName" placeholder="Название">
+					</div>
+				</div>
+				<button class="button">Изменить</button>
+			</form>
+			<form method="GET" action="controller/radicals.php">
+					<button class="button button__delete">Удалить</button>
+					<input type="hidden" value="delete" name="action">
+					<input type="hidden" value="" name="deleting" class="radicalId">
+			</form>
+		</div>
+	</div>
 </body>
 </html>

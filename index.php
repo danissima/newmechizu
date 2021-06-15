@@ -1,4 +1,5 @@
-<?php 
+<?php
+session_start();
 include 'config.php';
 
 $kanjiSelect = $mysqli->query("SELECT kanji_view FROM kanji");
@@ -28,9 +29,15 @@ $wordsAmount = $wordsSelect->{'num_rows'} + $combsSelect->{'num_rows'};
 					<div class="main__title-wp">
 						<h1 class="main__title">Упрости своё изучение японского</h1>
 					</div>
-					<div class="main__stats-info-wp">
-						<p class="main__stats-info">На сегодняшний день изучено<br><span class="main__stats-num"><?=$kanjiAmount?></span> иероглифов и <span class="main__stats-num"><?=$wordsAmount?></span> слов</p>
-					</div>
+					<?php if($_SESSION['admin']) { ?>
+						<div class="main__stats-info-wp">
+							<p class="main__stats-info">На сегодняшний день изучено<br><span class="main__stats-num"><?=$kanjiAmount?></span> иероглифов и <span class="main__stats-num"><?=$wordsAmount?></span> слов</p>
+						</div>
+					<?php } else {?>
+						<div class="main__stats-info-wp">
+							<p class="main__stats-info">И воплоти мечту в жизнь!</p>
+						</div>
+					<?php }?>
 				</div>
 			</div>
 		</div>

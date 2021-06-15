@@ -888,3 +888,65 @@ h1, h2, h3, h4, h5, h6 {
 .search .words__content {
 	margin-top: 50px;
 }
+
+.modal {
+	top: 0;
+	left: 0;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	display: none;
+	z-index: 30;
+	justify-content: center;
+	align-items: center;
+}
+
+.modal__overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 10;
+	background-color: rgba(0,0,0,.5);
+}
+
+.modal__content {
+	width: 100%;
+	max-width: 1300px;
+	position: relative;
+	z-index: 20;
+	padding: 40px 50px;
+	/* background-color: #fff; */
+}
+
+.modal .section__table {
+	position: relative;
+}
+
+.modal .section__table-title-wp_left {
+	width: 185px;
+	left: -80px;
+}
+
+.modal__close {
+	top: -23px;
+	right: -26px;
+}
+
+.modal .button {
+	position: absolute;
+	bottom: 30px;
+	right: 130px;
+}
+
+.modal .button__delete {
+	left: 130px;
+	right: auto
+}
+
+.admin__section .section__table {
+	max-width: 60%;
+	margin-left: auto;
+	margin-right: auto;
+}

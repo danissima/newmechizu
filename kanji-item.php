@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'config.php';
 	$kanjiView = htmlspecialchars($_GET['kanji']);
 	
@@ -39,11 +40,15 @@ include 'config.php';
 		<div class="container">
 			<div class="section__wp single-kanji__section-wp">
 				<div class="section__top">
-					<a href="/change-kanji.php?changingKanji=<?=$kanjiView?>" class="button">Изменить</a>
+					<?php if($_SESSION['admin']) {?>
+						<a href="/change-kanji.php?changingKanji=<?=$kanjiView?>" class="button">Изменить</a>
+					<?php }?>
 					<div class="section__title-wp">
 						<h2 class="section__title">Карточка иероглифа</h2>
 					</div>
-					<a href="/controller/delete.php?deletingKanji=<?=$kanjiView?>" class="button">Удалить</a>
+					<?php if($_SESSION['admin']) {?>
+						<a href="/controller/delete.php?deletingKanji=<?=$kanjiView?>" class="button">Удалить</a>
+					<?php }?>
 				</div>
 				<div class="single-kanji__content">
 					<div class="single-kanji__main-info">

@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'config.php';
 
 
@@ -66,6 +67,7 @@ foreach($resultOnPage as &$word) {
 	<link rel="icon" href="images/logo/logo2.png">
 	<script src="js/jquery.js" defer></script>
 	<script src="js/section-table.js" defer></script>
+	<script src="js/words-modal.js" defer></script>
 	<title>Слова</title>
 </head>
 <body>
@@ -97,6 +99,7 @@ foreach($resultOnPage as &$word) {
 					?>
 				</div>
 				<div class="words__content">
+				<?php if($_SESSION['admin']) {?>
 					<form method="GET" action="controller/words.php">
 						<input type="hidden" name="action" value="add">
 						<div class="words__table section__table js-table section__table_small">
@@ -125,6 +128,7 @@ foreach($resultOnPage as &$word) {
 						</div>
 						<button class="button button_centered">Добавить слова</button>
 					</form>
+				<?php }?>
 					<?php
 					foreach($sortedByKana as &$letter) {
 						$current = key($sortedByKana); ?>
@@ -153,10 +157,14 @@ foreach($resultOnPage as &$word) {
 							$kana = $word['kana'];
 							$translation = $word['translation']; ?>
 							<div class="section__table-row">
+								<input type="hidden" value="<?=$id?>" class="word-id">
+								<input type="hidden" value="<?=$from?>" class="word-from">
 								<div class="section__table-item section__table-item_kanji"><?=$wordKanji?></div>
 								<div class="section__table-item section__table-item_kanji"><?=$kana?></div>
 								<div class="section__table-item"><?=$translation?></div>
-								<span class="section__table-row-icon section__table-row-change">&#9999;</span>
+								<?php if($_SESSION['admin']) {?>
+									<span class="section__table-row-icon section__table-row-change word-change">&#9999;</span>
+								<?php }?>
 							</div>
 						<?php } ?>
 						</div>
@@ -168,5 +176,45 @@ foreach($resultOnPage as &$word) {
 		</div>
 	</section>
 	<?include('includes/footer.php')?>
+	<div class="modal words__modal">
+		<div class="modal__overlay"></div>
+		<div class="modal__content">
+			<form method="GET" action="controller/words.php">
+				<input type="hidden" value="change" name="action">
+				<input type="hidden" value="" name="changing" class="wordId">
+				<input type="hidden" value="" name="from" class="from">
+				<div class="words__table section__table section__table_small">
+					<div class="section__table-row-head section__table-row">
+						<span class="section__table-row-icon modal__close">&times;</span>
+						<div class="section__table-title-wp section__table-title-wp_left section__table-title-wp_small"><h3 class="section__table-title">Изменение слова</h3></div>
+						<div class="section__table-item section__table-item-head">
+							<h4>Иероглифы</h4>
+							<div class="section__sep section__sep_white">&#9670;</div>
+						</div>
+						<div class="section__table-item section__table-item-head">
+							<h4>Азбука</h4>
+							<div class="section__sep section__sep_white">&#9670;</div>
+						</div>
+						<div class="section__table-item section__table-item-head">
+							<h4>Перевод</h4>
+							<div class="section__sep section__sep_white">&#9670;</div>
+						</div>
+					</div>
+					<div class="section__table-row">
+						<input name="wordKanji" type="text" class="section__table-item section__table-item_kanji wordKanji" placeholder="漢字">
+						<input required name="wordKana" type="text" class="section__table-item section__table-item_kanji wordKana" placeholder="かな">
+						<input required name="wordTranslation" type="text" class="section__table-item wordTranslate" placeholder="Перевод">
+					</div>
+				</div>
+				<button class="button">Изменить</button>
+			</form>
+			<form method="GET" action="controller/words.php">
+					<button class="button button__delete">Удалить</button>
+					<input type="hidden" value="delete" name="action">
+					<input type="hidden" value="" name="deleting" class="wordId">
+					<input type="hidden" value="" name="from" class="from">
+			</form>
+		</div>
+	</div>
 </body>
 </html>

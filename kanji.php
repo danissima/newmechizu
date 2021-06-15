@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'config.php';
 
 if (isset($_GET['page'])) {
@@ -42,7 +43,9 @@ while ($item = $radicalsSelect->fetch_array()) {
 					</div>
 				</div>
 				<div class="section__tools">
-					<a class="button" href="/add-kanji.php">Добавить иероглиф</a>
+					<?php if($_SESSION['admin']) {?>
+						<a class="button" href="/add-kanji.php">Добавить иероглиф</a>
+					<?php }?>
 					<a class="button" href="/radicals.php">Ключи</a>
 					<?include('includes/search-block.php')?>
 				</div>

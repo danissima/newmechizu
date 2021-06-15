@@ -18,6 +18,7 @@ while($item = $selectRadicals->fetch_array()) {
 	<link rel="icon" href="images/logo/logo2.png">
 	<script src="js/jquery.js" defer></script>
 	<script src="js/section-table.js" defer></script>
+	<script src="js/readings-table.js" defer></script>
 	<title>Новый иероглиф</title>
 </head>
 <body>
