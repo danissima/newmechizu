@@ -10,7 +10,7 @@
 				<li class="header__nav-item-wp"><a class="header__nav-item" href="/">Главная</a></li>
 				<li class="header__nav-item-wp"><a class="header__nav-item" href="/kanji.php">Иероглифы</a></li>
 				<li class="header__nav-item-wp"><a class="header__nav-item" href="/words.php">Слова</a></li>
-				<li class="header__nav-item-wp"><a class="header__nav-item" href="#">Тренировка</a></li>
+				<li class="header__nav-item-wp"><a class="header__nav-item" href="/training.php">Тренировка</a></li>
 			</ul>
 		</div>
 	</div>

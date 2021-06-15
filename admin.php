@@ -14,9 +14,6 @@ if ($_SESSION['admin']) {
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="icon" href="images/logo/logo2.png">
-	<script src="js/jquery.js" defer></script>
-	<script src="js/section-table.js" defer></script>
-	<script src="js/readings-table.js" defer></script>
 	<title>Администратор</title>
 </head>
 <body>
